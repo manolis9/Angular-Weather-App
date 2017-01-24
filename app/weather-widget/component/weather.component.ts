@@ -16,6 +16,7 @@ export class WeatherComponent implements OnInit {
     weatherData = new Weather(null, null, null, null, null);
     currentSpeedUnit = "kph";
     currentTempUnit = "fahrenheit";
+    currentLocation = "";
 
     constructor(private service: WeatherService) { }
 
@@ -28,6 +29,7 @@ export class WeatherComponent implements OnInit {
             .subscribe(position => {
                 this.pos = position
                 this.getCurrentWeather()
+                this.getLocationName();
             },
             err => console.error(err));
     }
@@ -43,5 +45,13 @@ export class WeatherComponent implements OnInit {
                     console.log("Weather: ", this.weatherData); //TODO: REMOVE
             },
             err => console.error(err));
+    }
+
+    getLocationName() {
+        this.service.getLocationName(this.pos.coords.latitude, this.pos.coords.longitude)
+            .subscribe(location => {
+                this.currentLocation = location["results"][1]["formatted_address"];
+                console.log("Name: ", this.currentLocation); //TODO: REMOVE
+            });
     }
 }
