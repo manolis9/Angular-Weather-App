@@ -47,10 +47,29 @@ var WeatherComponent = (function () {
         var _this = this;
         this.service.getLocationName(this.pos.coords.latitude, this.pos.coords.longitude)
             .subscribe(function (location) {
-            console.log(location);
             _this.currentLocation = location["results"][1]["formatted_address"];
             console.log("Name: ", _this.currentLocation); //TODO: REMOVE
         });
+    };
+    WeatherComponent.prototype.toggleUnits = function () {
+        this.toggleTempUnits();
+        this.toggleSpeedUnits();
+    };
+    WeatherComponent.prototype.toggleTempUnits = function () {
+        if (this.currentTempUnit == "fahrenheit") {
+            this.currentTempUnit = "celsius";
+        }
+        else {
+            this.currentTempUnit = "fahrenheit";
+        }
+    };
+    WeatherComponent.prototype.toggleSpeedUnits = function () {
+        if (this.currentSpeedUnit == "kph") {
+            this.currentSpeedUnit = "mph";
+        }
+        else {
+            this.currentSpeedUnit = "kph";
+        }
     };
     WeatherComponent = __decorate([
         core_1.Component({
