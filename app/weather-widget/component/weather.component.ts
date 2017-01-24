@@ -14,6 +14,8 @@ import { Weather } from '../model/weather';
 export class WeatherComponent implements OnInit {
     pos: Position;
     weatherData = new Weather(null, null, null, null, null);
+    currentSpeedUnit = "kph";
+    currentTempUnit = "fahrenheit";
 
     constructor(private service: WeatherService) { }
 
@@ -24,7 +26,7 @@ export class WeatherComponent implements OnInit {
     getCurrentLocation() {
         this.service.getCurrentLocation()
             .subscribe(position => {
-                this.pos = position;
+                this.pos = position
                 this.getCurrentWeather()
             },
             err => console.error(err));
