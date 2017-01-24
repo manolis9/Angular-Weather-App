@@ -4,21 +4,21 @@
             <p>Vancouver, BC</p>
         </div>
         <div class="col-xs-4 text-xs-right">
-            <h1>10&deg;</h1>
+            <h1>{{ weatherData.temp | number: '.0-0'}}&deg;</h1>
         </div>
     </div>
     <div class="card-block">
         <h1>0</h1>
-        <p>Partly Sunny</p>
+        <p>{{ weatherData.summary }}</p>
     </div>
     <div class="card-footer">
         <div class="col-xs-5">
             <p>Wind</p>
-            <p>14mph</p>
+            <p>{{ weatherData.wind }}mph</p>
         </div>
         <div class="col-xs-5 offset-xs-2">
             <p>Humidity</p>
-            <p>80%</p>
+            <p>{{ weatherData.humidity }}80%</p>
         </div>
     </div>
 </div>
